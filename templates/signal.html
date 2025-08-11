@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signals - Binance.com</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="top-header">
+        <div class="header-left">
+            <div class="logo">AI SuperBot</div>
+        </div>
+        <div class="header-right">
+            <div class="dropdown">
+                <button class="dropbtn">Menu ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <button class="start-btn">Start now →</button>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Signals - Binance.com</h1>
+        <p>Refreshing in: <span id="countdown">0:30</span></p>
+        <p>Time: <span id="server-time"></span></p>
+    </section>
+
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search...">
+        <select id="dropdown">
+            <option>-- Select --</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </select>
+    </div>
+
+    <div class="counters">
+        <span class="buy-counter">
+            Buy:<span id="buy-count">0</span>/<span id="total-assets-buy-sell">245</span>
+        </span>&nbsp;&nbsp;
+        <span class="sell-counter">
+            Sell:<span id="sell-count">0</span>/<span id="total-assets-buy-sell">245</span>
+        </span>&nbsp;&nbsp;
+        <span class="hold-counter">
+            Hold:<span id="hold-count">0</span>/<span id="total-assets-hold-exit">245</span>
+        </span>&nbsp;&nbsp;
+        <span class="exit-counter">
+            Exit:<span id="exit-count">0</span>/<span id="total-assets-hold-exit">245</span>
+        </span>
+    </div>
+
+    <div class="table-container">
+        <table id="signals-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ASSET (Symbol)</th>
+                    <th>CURRENT SIGNAL</th>
+                    <th>CURRENT PRICE (USDT)</th>
+                    <th>SIGNAL UPDATE TIME</th>
+                </tr>
+            </thead>
+        <tbody>
+
+        </tbody>
+        </table>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
