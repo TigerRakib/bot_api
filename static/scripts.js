@@ -3,7 +3,7 @@ let refreshSeconds = 30;  // countdown starting
 
 async function loadSignals() {
     try {
-        const response = await fetch("/api/signals");
+        const response = await fetch("/signals");
         const data = await response.json();
 
         // Update counters
@@ -17,7 +17,7 @@ async function loadSignals() {
 
             // Compare with previous price to determine up/down
             if (previousPrices[row.symbol] !== undefined) {
-                if (row.current_price > previousPrices[row.symbol]) {
+                if (row.price > previousPrices[row.symbol]) {
                     direction = "up";
                 } else {
                     direction = "down";
@@ -25,36 +25,23 @@ async function loadSignals() {
             }
 
             // Save current price
-            previousPrices[row.symbol] = row.current_price;
+            previousPrices[row.symbol] = row.price;
 
             // arrow and color
             const arrow = direction === "up" ? "▲" : (direction === "down" ? "▼" : "");
             const colorClass = direction === "up" ? "price-up" : (direction === "down" ? "price-down" : "");
-            const formatDateTime = (dateStr) => {
-                const date = new Date(dateStr);
-                const pad = (num) => num.toString().padStart(2, '0');
 
-                const year = date.getUTCFullYear();
-                const month = pad(date.getUTCMonth() + 1);
-                const day = pad(date.getUTCDate());
-                const hours = pad(date.getUTCHours());
-                const minutes = pad(date.getUTCMinutes());
-                const seconds = pad(date.getUTCSeconds());
-
-                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-                }
 
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${i + 1}.</td>
                 <td>${row.symbol}</td>
                 <td>${row.signal_type}</td>
-                <td class="${colorClass}">${row.current_price} ${arrow}</td>
-                <td>${formatDateTime(row.signal_update_time)}</td>
+                <td class="${colorClass}">${row.price} ${arrow}</td>
+                <td>${row.updated_at}</td>
             `;
             tbody.appendChild(tr);
         });
-
 
         
 
